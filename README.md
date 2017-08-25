@@ -8,9 +8,9 @@ cmake ..
 make
 ```
 
-All the code is in `main.cpp`. The program makes a list of delta times (in milliseconds) and stores it in a file colled `out.txt`.
+All the code is in `main.cpp`. The program makes a list of delta times (in milliseconds) and stores it in a file called `out.txt`.
 
-Then I use python to load `out.txt` and plot data:
+Then I use python to load `out.txt` and plot the data:
 
 ```
 def loadNums():
