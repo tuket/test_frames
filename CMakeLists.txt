@@ -16,17 +16,16 @@ add_subdirectory(SDL2)
 add_subdirectory(glad)
 
 include_directories( 
-	SDL2
-	glad
+	SDL2/include
+	glad/include
 )
 
 add_executable( test_frames
 	main.cpp
 )
 
+set(LINK_LIBS SDL2-static SDL2main glad)
 if(UNIX)
 	set(LINK_LIBS ${LINK_LIBS} m dl pthread)
 endif()
-target_link_libraries( test_frames
-	SDL2-static SDL2main
-)
+target_link_libraries( test_frames ${LINK_LIBS} )
