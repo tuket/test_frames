@@ -1,4 +1,4 @@
-This is a minimal project for a question in stackoverflow.
+This is a minimal project for a [question in stackoverflow](https://stackoverflow.com/questions/45885534/sdl-opengl-irregular-frame-times-with-periodic-spikes).
 
 In order to compile this project you need CMake
 ```
