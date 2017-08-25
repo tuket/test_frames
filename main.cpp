@@ -6,9 +6,8 @@
 
 using namespace std;
 
+// the application will close after this amount of time
 const float MILISECONDS_TO_CLOSE = 10 * 1000;
-
-void saveDeltas(const vector<unsigned>& deltas);
 
 int main(int argc, char** argv)
 {
@@ -28,7 +27,7 @@ int main(int argc, char** argv)
 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
-	// SDL_GL_SetSwapInterval(1);
+	// SDL_GL_SetSwapInterval(1);	// this line mitigates the problem but just slightly
 
 	if (!gladLoadGL())
 	{
@@ -43,7 +42,7 @@ int main(int argc, char** argv)
 	glClearColor(0.15f, 0.15f, 0.15f, 1.0f);
 
 	vector<unsigned> deltas;
-	deltas.reserve(MILISECONDS_TO_CLOSE);
+	deltas.reserve(10 * MILISECONDS_TO_CLOSE);
 
 	static unsigned firstTime, prevTime, curTime;
 	firstTime = prevTime = curTime = SDL_GetTicks();
@@ -55,7 +54,7 @@ int main(int argc, char** argv)
 		prevTime = curTime;
 		deltas.push_back(dt);
 
-		// end loop
+		// close the application after some time
 		if (curTime - firstTime > MILISECONDS_TO_CLOSE) break;
 
 		// handle closing events
@@ -70,16 +69,11 @@ int main(int argc, char** argv)
 		SDL_GL_SwapWindow(window);
 	}
 
-	cout << "number of deltas: " << deltas.size() << endl;
-	saveDeltas(deltas);
-
-	return 0;
-}
-
-void saveDeltas(const vector<unsigned>& deltas)
-{
+	// save recorded deltas to a file
 	fstream f("out.txt", ios::out | ios::trunc);
 	for (unsigned dt : deltas) f << dt << endl;
 	f << flush;
 	f.close();
+
+	return 0;
 }
