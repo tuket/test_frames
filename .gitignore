@@ -1,1 +1,2 @@
-build
+test_frames_sdl/build
+test_frames_glfw/build

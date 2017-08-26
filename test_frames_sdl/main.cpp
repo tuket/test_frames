@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
-	// SDL_GL_SetSwapInterval(1);	// this line mitigates the problem but just slightly
+	//SDL_GL_SetSwapInterval(1);	// this line mitigates the problem but just slightly
 
 	if (!gladLoadGL())
 	{
@@ -59,13 +59,14 @@ int main(int argc, char** argv)
 
 		// handle closing events
 		SDL_Event event;
-		if (SDL_PollEvent(&event))
+		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE || event.type == SDL_QUIT) break;
 		}
 
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		SDL_Delay(10);
 		SDL_GL_SwapWindow(window);
 	}
 
