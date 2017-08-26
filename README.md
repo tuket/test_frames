@@ -13,6 +13,8 @@ All the code is in `main.cpp`. The program makes a list of delta times (in milli
 Then I use python to load `out.txt` and plot the data:
 
 ```
+import matplotlib.pyplot as plt
+
 def loadNums():
 	f = open("out.txt")
 	txt = f.read()
